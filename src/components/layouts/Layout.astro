@@ -1,0 +1,61 @@
+---
+import '@/global.css';
+import Header from "@/components/layouts/Header.astro";
+import Footer from "@/components/layouts/Footer.astro";
+
+interface Props {
+    title: string;
+    description: string;
+}
+
+const {title, description} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? new URL('https://simon.renoux.dev/'));
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="750">
+    <meta property="og:url" content={'https://www.oneiricforge.com/'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={'https://www.oneiricforge.com/'} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <meta name="theme-color" content="#70C4F0" />
+
+    <!-- Keywords -->
+    <meta name="keywords"
+          content="Oneiric's Forge, Oneiric, Forge, Oneirics, Oneiric's, Oneirics Forge, Oneiric Forge, Minecraft, Data Packs, Minecraft Data Packs, Minecraft Mods, Minecraft Mod, Minecraft Resource Packs, Minecraft Resource Pack, Minecraft Texture Packs, Minecraft Texture Pack, Minecraft Maps, Minecraft Map, Minecraft Seeds, Minecraft Seed, Minecraft Tutorials, Minecraft Tutorial, Minecraft Guides, Minecraft Guide" />
+</head>
+<body>
+<main class="overflow-hidden relative">
+    <Header />
+    <slot />
+</main>
+<Footer />
+</body>
+</html>
